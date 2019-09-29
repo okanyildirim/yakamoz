@@ -2,61 +2,47 @@ package com.hof.yakamozauth.data;
 
 import com.hof.yakamozauth.entity.User;
 import com.hof.yakamozauth.entity.UserRole;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class UserMapper {
 
-    public static User userRequestToUser(UserRequest request) {
+    private final UserDetailsMapper userDetailsMapper;
 
-        if (request == null) {
+    public User toUser(UserDto userDto) {
+
+        if (userDto == null) {
             return null;
         }
-
+        // todo builder
         User user = new User();
-
-        user.setId(request.getId());
-        user.setUserDetails(request.getUserDetails());
-        user.setEmail(request.getEmail());
-        user.setUsername(request.getUsername());
-        user.setPassword(request.getPassword());
-        user.setRoles(request.getRoles());
-
+        user.setId(userDto.getId());
+        user.setUserDetails(userDetailsMapper.toUserDetails(userDto.getUserDetails())); // todo içime sinmedi
+        user.setEmail(userDto.getEmail());
+        user.setUsername(userDto.getUsername());
+        user.setPassword(userDto.getPassword());
+        user.setRoles(userDto.getRoles());
         return user;
     }
 
 
-    public static UserResponse userToUserResponse(User user) {
+    public UserDto toUserDto(User user) {
         if (user == null) {
             return null;
         }
+        UserDto userDto = new UserDto();
 
-        UserResponse userResponse = new UserResponse();
-
-        userResponse.setId(user.getId());
-        userResponse.setEmail(user.getEmail());
-        userResponse.setUserDetails(user.getUserDetails());
-        userResponse.setUsername(user.getUsername());
-        userResponse.setPassword(user.getPassword());
-        userResponse.setRoles(user.getRoles());
-
-        return userResponse;
+        userDto.setId(user.getId());
+        userDto.setEmail(user.getEmail());
+        userDto.setUserDetails(userDetailsMapper.toUserDetailsDto(user.getUserDetails()));
+        userDto.setUsername(user.getUsername());
+        userDto.setPassword(user.getPassword());
+        userDto.setRoles(user.getRoles());
+        return userDto;
     }
 
-    public static User userRegistrationRequestToUser(UserRegistrationRequest request) {
-
-        if (request == null) {
-            return null;
-        }
-
-        User user = new User();
-        user.setEmail(request.getEmail());
-        user.setUsername(request.getUsername());
-        user.setPassword(request.getPassword());
-        user.addRole(UserRole.CLIENT);
-
-        return user;
-    }
-
-    //request.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
+    //userDto.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
 }

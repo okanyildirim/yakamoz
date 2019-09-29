@@ -1,9 +1,10 @@
 package com.hof.yakamozauth.user;
 
 import com.hof.yakamozauth.controller.UserController;
+import com.hof.yakamozauth.data.UserDto;
 import com.hof.yakamozauth.data.UserMapper;
-import com.hof.yakamozauth.data.UserResponse;
 import com.hof.yakamozauth.entity.User;
+import com.hof.yakamozauth.entity.UserDetails;
 import com.hof.yakamozauth.entity.UserRole;
 import com.hof.yakamozauth.service.UserService;
 import org.junit.Before;
@@ -27,6 +28,8 @@ public class UserTest {
     UserService userService;
     @InjectMocks
     UserController userController;
+    @Mock
+    UserMapper userMapper;
 
     @Before
     public void setUp(){
@@ -44,9 +47,8 @@ public class UserTest {
 
     @Test
     public void testGetAllUser(){
-
-        List<UserResponse> users = new ArrayList<>();
-        users.add(UserMapper.userToUserResponse(user));
+        List<UserDto> users = new ArrayList<>();
+        users.add(userMapper.toUserDto(user));
         when(userService.getAllUsers()).thenReturn(users);
         assertEquals(1,users.size());
     }

@@ -12,67 +12,66 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
 @AllArgsConstructor
 public class UserService {
 
-    private final  UserRepository userRepository;
+	private final UserRepository userRepository;
+	private final UserMapper userMapper;
 
-    public List<UserResponse> getAllUsers(){
+	public List<UserDto> getAllUsers() {
+		// TODO: 29.09.2019 should be pageable
+		return userRepository.findAll().stream().map(userMapper::toUserDto).collect(Collectors.toList());
+	}
 
-       Iterator<User> users = userRepository.findAll().iterator();
-       List<UserResponse> usersResponse = new ArrayList<>();
-       while (users.hasNext()){
-           User user = users.next();
-           usersResponse.add(UserMapper.userToUserResponse(user));
-       }
+	public void createUser(UserDto request) {
+		// UserValidator.createValidator(request); --> 2nd practice
+		request.userCreateRequestValidator();
+		if (userRepository.existsByEmail(request.getEmail())) {
+			throw new EmailAlreadyExistsException(1000, "This email is already exists!");
+		}
 
-        return  usersResponse;
-    }
+		if (userRepository.existsByUsername(request.getUsername())) {
+			throw new UserNameAlreadyExistsException(1000, "This username is already exists!");
+		}
 
-    public void createUser ( UserRegistrationRequest request){
-        UserValidator.createValidator(request);
-        if (userRepository.existsByEmail(request.getEmail())){
-            throw new EmailAlreadyExistsException(1000,"This email is already exists!");
-        }
+		// TODO: REST best practice for create and update requests return objects
+		User user = userMapper.toUser(request);
+		userRepository.save(user);
+	}
 
-        if (userRepository.existsByUsername(request.getUsername())){
-            throw new UserNameAlreadyExistsException(1000, "This username is already exists!");
-        }
-        User user = UserMapper.userRegistrationRequestToUser(request);
-        userRepository.save(user);
-    }
+	public User editUser(UserDto request) {
+		// TODO: exception type can be changed and this sentence can be used as method for writing short instead of using much and long
+		User user = userRepository.findById(request.getId()).orElseThrow(NullPointerException::new);
 
-    public User editUser(UserRequest userRequest){
-        User user = userRepository.findById(userRequest.getId()).orElseThrow(NullPointerException::new);
+		// todo: analize göre baştan yazılması daha iyi olur email, password, username gibi alanların değişimine yönelik farklı endpintler daha iyi olur
+		user.setUsername(request.getUsername());
+		user.setPassword(request.getPassword());
+		user.setEmail(request.getEmail());
+		return userRepository.save(user);
+	}
 
-        user.setUsername(userRequest.getUsername());
-        user.setPassword(userRequest.getPassword());
-        user.setEmail(userRequest.getEmail());
-        user.setUserDetails(userRequest.getUserDetails());
-        return userRepository.save(user);
-    }
+	public void deleteUser(Long id) {
+		userRepository.deleteById(id);
+	}
 
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
+	public UserDto getUser(Long id) {
+		return userMapper.toUserDto(userRepository.findById(id).orElseThrow(() -> new NotFoundException(1000, "User is not found!")));
+	}
 
-    public UserResponse getUser(Long id){
-        return UserMapper.userToUserResponse(userRepository.findById(id).orElseThrow(() -> new NotFoundException(1000,"User is not found!")));
-    }
+	public Boolean login(LoginRequest loginRequest) {
+		User user = userRepository.findByEmail(loginRequest.getEmail());
+		if (user == null) {
+			throw new NotFoundException(1000, "Email is not found!");
+		}
 
-    public Boolean login(LoginRequest loginRequest) {
-        User user =  userRepository.findByEmail(loginRequest.getEmail());
-        if (user == null){
-            throw new NotFoundException(1000, "Email is not found!");
-        }
-
-        if (user.getPassword().equals(loginRequest.getPassword())){
-            return true;
-        } else {
-            return false;
-        }
-    }
+		if (user.getPassword().equals(loginRequest.getPassword())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
