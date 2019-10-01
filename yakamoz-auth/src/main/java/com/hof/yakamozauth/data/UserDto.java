@@ -3,11 +3,14 @@ package com.hof.yakamozauth.data;
 import com.hof.yakamozauth.common.Utility;
 import com.hof.yakamozauth.entity.UserDetails;
 import com.hof.yakamozauth.entity.UserRole;
+import com.sun.istack.internal.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Data
@@ -17,8 +20,17 @@ import java.util.Set;
 public class UserDto {
 
     private Long id;
+    @NotNull
+    @NotBlank
     private String username;
+
+    @NotNull
+    @NotBlank
+    @Email
     private String email;
+
+    @NotBlank
+    @NotNull
     private String password;
     private UserDetailsDto userDetails;
     private Set<UserRole> roles;
