@@ -6,12 +6,18 @@ import com.hof.yakamozauth.common.exception.NotFoundException;
 import com.hof.yakamozauth.data.ErrorResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 @RestControllerAdvice
 @RequiredArgsConstructor
@@ -69,6 +75,19 @@ public class GlobalExceptionHandler {
         log.error("Illegal Argument exception is happened!",ex);
 
         return ResponseEntity.ok(new ErrorResponse(1000, ex.getMessage()));
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity handleMethodArgumentNotValidException(MethodArgumentNotValidException ex){
+        Map<String,String> errors = new HashMap<>();
+         ex.getBindingResult().getAllErrors()
+                 .forEach(objectError -> {
+                     String fieldName = ((FieldError) objectError).getField();
+                     String errorMessage = objectError.getDefaultMessage();
+                     errors.put(fieldName,errorMessage);
+                 });
+        return ResponseEntity.ok(errors.toString());
     }
 
 }
