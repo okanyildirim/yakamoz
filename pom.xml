@@ -20,6 +20,7 @@
     </properties>
     <modules>
         <module>yakamoz-auth</module>
+        <module>cms</module>
     </modules>
     <dependencies>
         <dependency>

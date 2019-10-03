@@ -49,7 +49,7 @@ public class UserTest {
     public void testGetAllUser(){
         List<UserDto> users = new ArrayList<>();
         users.add(userMapper.toUserDto(user));
-        when(userService.getAllUsers()).thenReturn(users);
+        /* when(userService.getAllUsers()).thenReturn(users); */
         assertEquals(1,users.size());
     }
 }

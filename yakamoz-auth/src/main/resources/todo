@@ -1,0 +1,2 @@
+private final MonitoringService monitoringService;
+private final MessageTextResolver messageTextResolver;
