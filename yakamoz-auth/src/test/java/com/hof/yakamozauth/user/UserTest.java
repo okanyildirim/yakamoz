@@ -4,7 +4,6 @@ import com.hof.yakamozauth.controller.UserController;
 import com.hof.yakamozauth.data.UserDto;
 import com.hof.yakamozauth.data.UserMapper;
 import com.hof.yakamozauth.entity.User;
-import com.hof.yakamozauth.entity.UserDetails;
 import com.hof.yakamozauth.entity.UserRole;
 import com.hof.yakamozauth.service.UserService;
 import org.junit.Before;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserTest {

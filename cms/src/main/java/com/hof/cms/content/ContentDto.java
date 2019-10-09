@@ -1,15 +1,15 @@
 package com.hof.cms.content;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import com.hof.cms.writer.Writer;
+import com.hof.cms.writer.data.WriterDto;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class ContentDto {
 
 	private Long id;
@@ -19,4 +19,6 @@ public class ContentDto {
 	private ContentType contentType;
 	@NotNull
 	private String body;
+
+	private WriterDto writer;
 }

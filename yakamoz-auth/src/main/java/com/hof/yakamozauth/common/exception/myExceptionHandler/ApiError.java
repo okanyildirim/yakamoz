@@ -2,13 +2,11 @@ package com.hof.yakamozauth.common.exception.myExceptionHandler;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@RequiredArgsConstructor
 public class ApiError {
     private HttpStatus status;
 

@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
 
 @Data
 @Entity
-public class UserDetails {
+public class PersonalDetails {
 
     @Id
     @GeneratedValue

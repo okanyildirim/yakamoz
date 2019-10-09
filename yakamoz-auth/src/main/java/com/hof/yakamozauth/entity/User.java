@@ -20,7 +20,7 @@ public class User {
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_DETAILS_ID", foreignKey = @ForeignKey(name = "FK_USER_USER_DETAILS"))
-    private UserDetails userDetails;
+    private PersonalDetails userDetails;
 
     @Email
     private String email;

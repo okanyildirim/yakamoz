@@ -42,6 +42,6 @@ public class ContentService {
 
 	public void deleteContent(Long id) {
 		Content content = findContentById(id);
-		contentRepository.deleteById(id);
+			contentRepository.deleteById(id);
 	}
 }

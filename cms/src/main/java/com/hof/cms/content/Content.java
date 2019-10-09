@@ -1,5 +1,7 @@
 package com.hof.cms.content;
 
+import com.hof.cms.writer.Writer;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,9 @@ public class Content {
 	private String body;
 	@Enumerated(EnumType.STRING)
 	private ContentType contentType;
+
+	@OneToOne
+	private Writer writer;
 
 	public Content() {
 	}
@@ -47,5 +52,13 @@ public class Content {
 
 	public void setContentType(ContentType contentType) {
 		this.contentType = contentType;
+	}
+
+	public Writer getWriter() {
+		return writer;
+	}
+
+	public void setWriter(Writer writer) {
+		this.writer = writer;
 	}
 }

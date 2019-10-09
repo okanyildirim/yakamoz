@@ -1,18 +1,18 @@
 package com.hof.yakamozauth.data;
 
-import com.hof.yakamozauth.entity.UserDetails;
+import com.hof.yakamozauth.entity.PersonalDetails;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserDetailsMapper {
 
-	public UserDetails toUserDetails(UserDetailsDto userDetailsDto) {
+	public PersonalDetails toUserDetails(UserDetailsDto userDetailsDto) {
 
 		if (userDetailsDto == null){
 			return null;
 		}
 
-		UserDetails userDetails = new UserDetails();
+		PersonalDetails userDetails = new PersonalDetails();
 
 		userDetails.setId(userDetailsDto.getId());
 		userDetails.setFirstName(userDetailsDto.getFirstName());
@@ -23,7 +23,7 @@ public class UserDetailsMapper {
 		return userDetails;
 	}
 
-	public UserDetailsDto toUserDetailsDto(UserDetails userDetails) {
+	public UserDetailsDto toUserDetailsDto(PersonalDetails userDetails) {
 
 		if (userDetails == null){
 			return null;
