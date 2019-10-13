@@ -1,6 +1,6 @@
 package com.hof.cms.writer.data.mapper;
 
-import com.hof.cms.writer.PersonalDetails;
+import com.hof.cms.writer.entity.PersonalDetails;
 import com.hof.cms.writer.data.PersonalDetailsDto;
 
 public class PersonalDetailsMapper {

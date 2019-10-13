@@ -1,13 +1,10 @@
 package com.hof.cms.content;
 
-import com.hof.cms.writer.Writer;
-import com.hof.cms.writer.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

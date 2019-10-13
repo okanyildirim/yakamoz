@@ -1,6 +1,6 @@
 package com.hof.cms.content;
 
-import com.hof.cms.writer.Writer;
+import com.hof.cms.writer.entity.Writer;
 
 import javax.persistence.*;
 
