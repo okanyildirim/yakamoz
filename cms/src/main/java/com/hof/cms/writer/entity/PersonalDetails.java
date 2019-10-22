@@ -1,7 +1,4 @@
-package com.hof.cms.writer;
-
-import com.hof.cms.writer.user.User;
-import lombok.Data;
+package com.hof.cms.writer.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

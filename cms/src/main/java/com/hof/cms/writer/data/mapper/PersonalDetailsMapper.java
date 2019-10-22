@@ -1,8 +1,10 @@
 package com.hof.cms.writer.data.mapper;
 
-import com.hof.cms.writer.PersonalDetails;
+import com.hof.cms.writer.entity.PersonalDetails;
 import com.hof.cms.writer.data.PersonalDetailsDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PersonalDetailsMapper {
 
     public PersonalDetails toPersonalDetails(PersonalDetailsDto personalDetailsDto) {

@@ -1,9 +1,6 @@
-package com.hof.cms.writer.user;
+package com.hof.cms.writer.entity;
 
 import com.hof.cms.content.Content;
-import com.hof.cms.writer.Writer;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

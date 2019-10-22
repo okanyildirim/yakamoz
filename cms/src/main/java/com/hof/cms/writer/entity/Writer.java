@@ -1,4 +1,4 @@
-package com.hof.cms.writer;
+package com.hof.cms.writer.entity;
 
 import com.hof.cms.content.Content;
 

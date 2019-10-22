@@ -1,6 +1,6 @@
 package com.hof.cms.writer.data.mapper;
 
-import com.hof.cms.writer.Writer;
+import com.hof.cms.writer.entity.Writer;
 import com.hof.cms.writer.data.WriterDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

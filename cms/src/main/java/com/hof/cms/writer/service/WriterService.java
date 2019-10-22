@@ -1,7 +1,7 @@
 package com.hof.cms.writer.service;
 
 import com.hof.cms.repository.WriterRepository;
-import com.hof.cms.writer.Writer;
+import com.hof.cms.writer.entity.Writer;
 import com.hof.cms.writer.data.WriterDto;
 import com.hof.cms.writer.data.mapper.WriterMapper;
 import lombok.RequiredArgsConstructor;

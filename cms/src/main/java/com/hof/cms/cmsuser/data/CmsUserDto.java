@@ -1,7 +1,9 @@
-package com.hof.yakamozauth.data;
+package com.hof.cms.cmsuser.data;
 
+import com.hof.cms.cmsuser.entity.CmsUserRole;
+import com.hof.cms.writer.data.PersonalDetailsDto;
+import com.hof.cms.writer.entity.PersonalDetails;
 import com.hof.yakamozauth.common.Utility;
-import com.hof.yakamozauth.entity.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +18,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class CmsUserDto {
 
     private Long id;
     @NotNull
@@ -28,12 +30,12 @@ public class UserDto {
     @Email
     private String email;
 
-    private Set<UserRole> roles;
-
     @NotBlank
     @NotNull
     private String password;
-    private UserDetailsDto userDetails;
+    private Set<CmsUserRole> roles;
+
+    private PersonalDetailsDto personalDetails;
 
     public void userCreateRequestValidator() {
         Utility.notNullAndLessThan("First Name", this.getUsername(), 3, 50);

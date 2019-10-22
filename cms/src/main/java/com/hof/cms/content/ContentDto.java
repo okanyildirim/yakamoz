@@ -1,6 +1,5 @@
 package com.hof.cms.content;
 
-import com.hof.cms.writer.Writer;
 import com.hof.cms.writer.data.WriterDto;
 import lombok.*;
 
