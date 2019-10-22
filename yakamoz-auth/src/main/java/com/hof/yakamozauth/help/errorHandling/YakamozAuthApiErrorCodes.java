@@ -1,0 +1,103 @@
+package com.hof.yakamozauth.help.errorHandling;
+
+import com.hof.yakamozauth.help.errorHandling.exception.HttpAwareErrorCode;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+
+@RequiredArgsConstructor
+public enum YakamozAuthApiErrorCodes implements HttpAwareErrorCode {
+
+	INVALID_ARGUMENT(10001, HttpStatus.OK),
+	MISSING_ARGUMENT(10002, HttpStatus.OK),
+	VALIDATION_ERROR(10003, HttpStatus.OK),
+	CONTENT_METADATA_UPDATE_NOW_ALLOWED(10004, HttpStatus.OK),
+	DUPLICATE_ENTITY(10005, HttpStatus.OK),
+	INVALID_NEXT_CONTENT_STATE(10006, HttpStatus.OK),
+	RAW_MEDIA_NOT_INGESTED(10007, HttpStatus.OK),
+	PUBLISH_POINT_NON_EXISTENT(10008, HttpStatus.OK),
+	VALID_LICENCE_NON_EXISTENT(10009, HttpStatus.OK),
+	CATEGORY_NON_EXISTENT(10010, HttpStatus.OK),
+	DEFAULT_TITLE_DESCRIPTION_NON_EXISTENT(10011, HttpStatus.OK),
+	DEFAULT_POSTER_NON_EXISTENT(10012, HttpStatus.OK),
+	MATURITY_LEVEL_NON_EXISTENT(10013, HttpStatus.OK),
+	PLAY_URL_NON_EXISTENT(10014, HttpStatus.OK),
+
+	/*
+	 * CMS API DEAl MANAGEMENT ERROR CODES
+	 * */
+	DUPLICATE_SUPPLIER(11001, HttpStatus.OK),
+	SUPPLIER_NOT_DELETE(11002, HttpStatus.OK),
+	DUPLICATE_DEAL(11003, HttpStatus.OK),
+	DATE_RELATIONSHIP_NOT_VALID(11004, HttpStatus.OK),
+	DEAL_NOT_DELETE(11005, HttpStatus.OK),
+
+
+
+
+
+
+
+
+
+	/*
+	 * General Auth Error codes
+	 * */
+	NOT_FOUND_ERROR(1001, HttpStatus.NOT_FOUND),
+	PASSWORD_MISMATCH_ERROR(1002, HttpStatus.OK),
+	EMAIL_ALREADY_EXIST_ERROR(1003, HttpStatus.UNAUTHORIZED),
+	INTERNAL_SERVER_ERROR(1004, HttpStatus.INTERNAL_SERVER_ERROR),
+	USER_NOT_FOUND_ERROR(1005, HttpStatus.INTERNAL_SERVER_ERROR),
+	/*
+	 * Business Errors
+	 * */
+	LOGIN_WITHOUT_TENANT_ERROR(1006, HttpStatus.OK),
+	USER_NOT_VERIFIED_ERROR(1007, HttpStatus.OK),
+	REJECTED_USER_ERROR(1008, HttpStatus.OK),
+	LOGIN_WITHOUT_EMAIL_ERROR(1010, HttpStatus.OK),
+	ADMIN_SELF_UPDATE_VALIDATION_ERROR(1011, HttpStatus.OK),
+	COULD_NOT_VALIDATE_TOKEN_ERROR(1012, HttpStatus.OK),
+	PASSWORD_CANNOT_BE_THE_SAME_ERROR(1014, HttpStatus.OK),
+	PASSWORD_IS_NOT_VALID(1015, HttpStatus.OK),
+	DEFAULT_POSTER_ERROR(1016, HttpStatus.OK),
+	POSTER_HAS_RELATIONS_ERROR(1017, HttpStatus.OK),
+	POSTER_IMAGE_EMPTY_ERROR(1018, HttpStatus.OK),
+	POSTER_NON_COMPATIBLE_FILE_TYPE_ERROR(1019, HttpStatus.OK),
+	POSTER_NON_COMPATIBLE_DIMDENSION_TYPE_ERROR(1020, HttpStatus.OK),
+	POSTER_MAX_IMAGE_SIZE_ERROR(1021, HttpStatus.OK),
+	PARAMETER_NOT_FOUND_ERROR(1022, HttpStatus.OK),
+
+	/*
+	* Platform Admin Error Codes
+	* */
+	SUBSCRIBER_NOT_FOUND_ERROR(1100, HttpStatus.OK),
+	OFFER_NOT_FOUND_ERROR(1101, HttpStatus.OK),
+	BUNDLE_NOT_FOUND_ERROR(1102, HttpStatus.OK),
+	LANGUAGE_NOT_FOUND_ERROR(1103, HttpStatus.OK),
+	BUNDLE_USED_BY_OFFER_ERROR(1104, HttpStatus.OK),
+	DEVICE_NOT_FOUND_ERROR(1105, HttpStatus.OK),
+	OFFER_INVALID_DATE_ERROR(1106, HttpStatus.OK),
+	SUBSCRIPTION_ALREADY_EXISTS_ERROR(1107, HttpStatus.OK),
+	OFFER_NOT_ELIGIBLE_ERROR(1108, HttpStatus.OK),
+	BENEFIT_BINDED_TO_BUNDLE_ERROR(1109, HttpStatus.OK),
+	BENEFIT_NOT_FOUND_ERROR(1110, HttpStatus.OK)
+	;
+
+	private final Integer code;
+	private final HttpStatus httpStatus;
+
+	@Override
+	public Integer code() {
+		return code;
+	}
+
+	@Override
+	public HttpStatus httpStatus() {
+		return httpStatus;
+	}
+
+	@Override
+	public String prefix() {
+		return "CMS";
+	}
+
+}
