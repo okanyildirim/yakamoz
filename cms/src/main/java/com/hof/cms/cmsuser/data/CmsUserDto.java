@@ -2,7 +2,6 @@ package com.hof.cms.cmsuser.data;
 
 import com.hof.cms.cmsuser.entity.CmsUserRole;
 import com.hof.cms.writer.data.PersonalDetailsDto;
-import com.hof.yakamozauth.common.Utility;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,10 +35,10 @@ public class CmsUserDto {
 
     private PersonalDetailsDto personalDetails;
 
-    public void userCreateRequestValidator() {
+   /* public void userCreateRequestValidator() {
         Utility.notNullAndLessThan("First Name", this.getUsername(), 3, 50);
         Utility.notNullAndLessThan("Password", this.getPassword(), 8,50);
         // todo email check
         // Utility.validateMail(request.getEmail());
-    }
+    }*/
 }

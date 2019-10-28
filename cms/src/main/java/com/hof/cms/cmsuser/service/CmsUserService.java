@@ -5,9 +5,9 @@ import com.hof.cms.cmsuser.data.CmsUserDto;
 import com.hof.cms.cmsuser.data.CmsUserMapper;
 import com.hof.cms.cmsuser.entity.CmsUser;
 import com.hof.cms.cmsuser.repository.CmsUserRepository;
-import com.hof.yakamozauth.common.exception.EmailAlreadyExistsException;
-import com.hof.yakamozauth.common.exception.NotFoundException;
-import com.hof.yakamozauth.common.exception.UserNameAlreadyExistsException;
+import com.hof.cms.common.exception.EmailAlreadyExistsException;
+import com.hof.cms.common.exception.NotFoundException;
+import com.hof.cms.common.exception.UserNameAlreadyExistsException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +29,7 @@ public class CmsUserService {
 
 	public void createUser(CmsUserDto request) {
 		// UserValidator.createValidator(request); --> 2nd practice
-		request.userCreateRequestValidator();
+		//request.userCreateRequestValidator();
 		if (cmsUserRepository.existsByEmail(request.getEmail())) {
 			throw new EmailAlreadyExistsException(1000, "This email is already exists!");
 		}
