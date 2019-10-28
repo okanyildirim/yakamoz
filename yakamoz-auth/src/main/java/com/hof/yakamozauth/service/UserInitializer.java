@@ -9,11 +9,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class UserInitializer implements InitializingBean {
+public class UserInitializer{ // implements InitializingBean {
 
     private final UserRepository userRepository;
 
-    @Override
     public void afterPropertiesSet() throws Exception {
         if (userRepository.count() == 0){
 

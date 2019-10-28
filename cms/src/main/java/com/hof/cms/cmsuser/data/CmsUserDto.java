@@ -2,7 +2,6 @@ package com.hof.cms.cmsuser.data;
 
 import com.hof.cms.cmsuser.entity.CmsUserRole;
 import com.hof.cms.writer.data.PersonalDetailsDto;
-import com.hof.cms.writer.entity.PersonalDetails;
 import com.hof.yakamozauth.common.Utility;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

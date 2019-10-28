@@ -2,7 +2,6 @@ package com.hof.cms.cmsuser.data;
 
 import com.hof.cms.cmsuser.entity.CmsUser;
 import com.hof.cms.writer.data.mapper.PersonalDetailsMapper;
-import com.hof.yakamozauth.data.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
